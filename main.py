@@ -38,12 +38,12 @@ def add_student():
     age = get_valid_age()
     gender = input("Enter student gender: ")
     student_class = input("Enter student class: ")
-    student = Student(roll_no,name, age, gender, student_class)
+    student = Student( roll_no, name, age, gender, student_class )
     students.append(student)
     save_students(students)
     print("Student added successfully!")
 
-def display_student(student_list):
+def display_students(student_list):
     if not student_list:
         print("Student list empty!")
     else:
@@ -57,18 +57,13 @@ def display_student(student_list):
             print(f"Class       : {student.student_class}")
             print("-" * 40)
 
-
 def view_students():
-    display_student(students)
-    student_compare = {student.roll_no: student.name for student in students}
-    print(student_compare)
+    display_students(students)
 
 def view_students_by_class():
     student_class = input("Enter student class: ")
-    # st = list(filter(lambda student: student.student_class == student_class, students))
-    # display_student(st)
-    stu=[student for student in students if student.student_class == student_class]
-    display_student(stu)
+    stu = [ student for student in students if student.student_class == student_class ]
+    display_students(stu)
 
 def delete_student():
     if not students:
