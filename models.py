@@ -1,13 +1,23 @@
-class Student:
-    def __init__(self,roll_no,name,age,gender,student_class):
-        self.roll_no = roll_no
-        self.name = name
-        self.age = age
-        self.gender = gender
-        self.student_class = student_class
+from dataclasses import dataclass
 
+@dataclass
+class Student:
+    roll_no : int
+    name : str
+    age : int
+    gender : str
+    student_class : str
+
+    def to_dict(self)->dict:
+        return {
+        "roll_no": self.roll_no,
+        "name": self.name,
+        "age": self.age,
+        "gender": self.gender,
+        "student_class": self.student_class
+    }
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data:dict)-> "Student":
         return cls(
             data["roll_no"],
             data["name"],
@@ -16,4 +26,4 @@ class Student:
             data["student_class"]
         )
 
-        Student.from_dict(data)
+print(Student(3, "Ansh gill", 21, "male", "12"))
