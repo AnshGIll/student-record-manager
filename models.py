@@ -10,12 +10,14 @@ class Student:
 
     def to_dict(self)->dict:
         return {
-        "roll_no": self.roll_no,
-        "name": self.name,
-        "age": self.age,
-        "gender": self.gender,
-        "student_class": self.student_class
-    }
+            "roll_no": self.roll_no,
+            "name": self.name,
+            "age": self.age,
+            "gender": self.gender,
+            "student_class": self.student_class
+        }
+
+
     @classmethod
     def from_dict(cls, data:dict)-> "Student":
         return cls(
@@ -25,5 +27,3 @@ class Student:
             data["gender"],
             data["student_class"]
         )
-
-print(Student(3, "Ansh gill", 21, "male", "12"))
