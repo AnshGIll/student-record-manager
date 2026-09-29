@@ -2,6 +2,7 @@ import json
 from json import JSONDecodeError
 from pathlib import Path
 from models import Student
+from datetime import datetime
 
 DATA_FILE = Path("students.json")
 
@@ -14,9 +15,15 @@ def load_students():
             data = json.load(file)
         students = [Student.from_dict(student) for student in data]
         return students
-    except (JSONDecodeError, OSError):
+    except (JSONDecodeError, KeyError, TypeError):
+        print("Error loading students: File got corrupted and renamed")
+        backup_name = f"student_corrupted_{datetime.now().strftime("%Y%m%d_%H%M%S")}.json"
+        DATA_FILE.rename(backup_name)
+        print(f"Data file was corrupted. Backed up to {backup_name}; starting with an empty list.")
         return []
-
+    except OSError as e:
+        print(f"Error loading students: {e}")
+        return []
 
 def save_students(students):
     try:

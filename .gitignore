@@ -3,4 +3,5 @@ __pycache__/
 .venv/
 .env
 students.json
+student_corrupted*.json
 .idea/
