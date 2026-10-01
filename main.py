@@ -38,7 +38,7 @@ def add_student():
     age = get_valid_age()
     gender = input("Enter student gender: ")
     student_class = input("Enter student class: ")
-    student = Student( roll_no, name, age, gender, student_class )
+    student = Student( roll_no=roll_no, name=name, age=age, gender=gender, student_class=student_class )
     students.append(student)
     save_students(students)
     print("Student added successfully!")
