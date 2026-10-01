@@ -16,10 +16,9 @@ def load_students():
         students = [Student.from_dict(student) for student in data]
         return students
     except (JSONDecodeError, KeyError, TypeError):
-        print("Error loading students: File got corrupted and renamed")
         backup_name = f"student_corrupted_{datetime.now().strftime("%Y%m%d_%H%M%S")}.json"
         DATA_FILE.rename(backup_name)
-        print(f"Data file was corrupted. Backed up to {backup_name}; starting with an empty list.")
+        print(f"Error loading students: File got corrupted and renamed to {backup_name}")
         return []
     except OSError as e:
         print(f"Error loading students: {e}")
